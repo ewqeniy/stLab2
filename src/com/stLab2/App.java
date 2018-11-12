@@ -42,7 +42,6 @@ public class App extends JFrame{
                 IMatrix m = new MatrixN(5,5,id);
                 initMatrix.fill(m,14,25);
                 m.Draw();
-                m.Draw();
             }
         });
     }
