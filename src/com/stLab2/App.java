@@ -34,7 +34,7 @@ public class App extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 repaint();
-                IDrawer id = new CDrawer();
+                IDrawer id = new WDrawer();
                 IMatrix m = new MatrixS(4,4,id);
                 initMatrix.fill(m,10,30);
                 matrix = m;
