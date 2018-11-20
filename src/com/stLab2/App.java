@@ -1,5 +1,6 @@
 package com.stLab2;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,6 +16,10 @@ public class App extends JFrame{
     private JButton buttonR;
     private JCheckBox CheckBox;
     private JLabel textS;
+    private JButton Decor;
+    private JButton Undecor;
+    private IMatrix matrix;
+    private int swRow1,swRow2,swCol1,swCol2;
 
 
     boolean isFlag() {
@@ -28,20 +33,43 @@ public class App extends JFrame{
         buttonR.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                IDrawer id = new WDrawer();
+                repaint();
+                IDrawer id = new CDrawer();
                 IMatrix m = new MatrixS(4,4,id);
                 initMatrix.fill(m,10,30);
+                matrix = m;
                 m.Draw();
+                Decor.setEnabled(true);
+                Undecor.setEnabled(false);
             }
         });
         buttonN.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                repaint();
                 IDrawer id = new CDrawer();
                 IMatrix m = new MatrixN(5,5,id);
                 initMatrix.fill(m,14,25);
+                matrix = m;
                 m.Draw();
+                Decor.setEnabled(true);
+                Undecor.setEnabled(false);
+            }
+        });
+        Decor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                matrix = new RenumDecorator(matrix);
+                matrix.Draw();
+                Undecor.setEnabled(true);
+            }
+        });
+        Undecor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                matrix = new RenumDecorator(matrix).getComponent();
+                matrix.Draw();
+                Undecor.setEnabled(false);
             }
         });
     }
@@ -51,10 +79,14 @@ public class App extends JFrame{
     public static void main(String[] args) {
         JFrame frame = new JFrame("App");
         frame.setContentPane(app.panel1);
+        frame.setPreferredSize(new Dimension(800,700));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
     }
 }
+
+
+
 
 

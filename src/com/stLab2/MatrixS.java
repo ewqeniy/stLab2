@@ -14,17 +14,24 @@ public class MatrixS extends AMatrix {
 
     @Override
     public void Draw() {
-        DrawBorder(this, App.app.getPanel1(), App.app.isFlag());
-        DrawItem(this, App.app.getPanel1(), App.app.isFlag());
+        DrawBorder(getSRows(), getSCols(), App.app.getPanel1(), App.app.isFlag());
+        for (int i = 0; i < getSRows(); i++) {
+            for (int j = 0; j < getSCols(); j++) {
+                if (this.get(i, j) != 0) DrawItem(i, j, String.valueOf(this.get(i, j)), App.app.getPanel1());
+                else DrawItem(i, j, "", App.app.getPanel1());
+            }
+            System.out.println("");
+        }
+        System.out.println("");
     }
 
     @Override
-    public void DrawBorder(AMatrix matrix, JPanel panel, boolean flag) {
-        drawer.DrawBorder(this,panel,flag);
+    public void DrawBorder(int Cols, int Rows, JPanel panel, boolean flag) {
+        drawer.DrawBorder(Cols, Rows, panel, flag);
     }
 
     @Override
-    public void DrawItem(AMatrix matrix, JPanel panel, boolean flag) {
-        drawer.DrawItem(this,panel,flag);
+    public void DrawItem(int Row, int Col, String value, JPanel panel1) {
+        drawer.DrawItem(Row, Col, value, panel1);
     }
 }

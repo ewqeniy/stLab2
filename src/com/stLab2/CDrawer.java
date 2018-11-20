@@ -5,13 +5,18 @@ import javax.swing.*;
 public class CDrawer implements IDrawer {
 
     @Override
-    public void DrawBorder(AMatrix matrix, JPanel panel, boolean flag) {
+    public void DrawBorder(int Cols, int Rows, JPanel panel, boolean flag) {
         //
     }
 
     @Override
-    public void DrawItem(AMatrix matrix, JPanel panel1, boolean flag) {
+    public void DrawItem(int Row, int Col, String value, JPanel panel1) {
+
         String Format;
+        Format = " %3s ";
+        System.out.format(Format, value);
+
+        /*String Format;
         if (flag)  Format = "| %3s |";
         else Format = " %3s ";
         if (flag) System.out.format("%n-----------------------------------%n");
@@ -25,7 +30,7 @@ public class CDrawer implements IDrawer {
                 //System.out.print(matrix.get(j,i) + " ");
             }
             if (flag) System.out.format("%n-----------------------------------%n");
-            else System.out.format("%n");
-        }
+            else System.out.format("%n");*/
+
     }
 }
