@@ -59,7 +59,7 @@ public class App extends JFrame{
         Decor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                matrix = new RenumDecorator(matrix);
+                matrix = new RenumDecorator(new RenumDecorator(matrix));
                 matrix.Draw();
                 Undecor.setEnabled(true);
             }
@@ -83,6 +83,17 @@ public class App extends JFrame{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        /*IDrawer d = new CDrawer();
+        IMatrix matr1 = new MatrixN(3,3,d);
+        IMatrix matr2 = new MatrixN(4,3,d);
+        IMatrix matr3 = new MatrixN(3,4,d);
+        IMatrix matr4 = new MatrixN(2,3,d);
+        initMatrix.fill(matr1,5,12);
+        initMatrix.fill(matr2,6,12);
+        initMatrix.fill(matr3,9,12);
+        initMatrix.fill(matr4,10,12);
+        HorizontalGroup group = new HorizontalGroup(matr1,matr2,matr3,matr4);
+        group.Draw();*/
     }
 }
 
