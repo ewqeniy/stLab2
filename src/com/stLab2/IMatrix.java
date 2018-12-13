@@ -1,6 +1,6 @@
 package com.stLab2;
 
-public interface IMatrix extends IDrawable{
+public interface IMatrix extends IDrawable, IIterable{
     int getSRows();
     int getSCols();
     int get(int row, int col);

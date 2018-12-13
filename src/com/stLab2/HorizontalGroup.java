@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 public class HorizontalGroup implements IMatrix {
     private ArrayList<IMatrix> matrixList = new ArrayList<>();
+    //private IMatrix matrix;
 
     public HorizontalGroup(IMatrix ... matrix) {
         this.matrixList.addAll(Arrays.asList(matrix));
@@ -34,12 +35,25 @@ public class HorizontalGroup implements IMatrix {
 
     @Override
     public int get(int row, int col) {
+        int nCol = 0;
+        for (int i = 0; i < matrixList.size(); i++) {
+            for (int j = 0; j < matrixList.get(i).getSRows(); j++) {
+                if ((nCol + j) == col) return matrixList.get(i).get(row,j);
+            }
+            nCol=+matrixList.get(i).getSRows();
+        }
         return 0;
     }
 
     @Override
     public void set(int row, int col, int value) {
-
+        int nCol = 0;
+        for (int i = 0; i < matrixList.size(); i++) {
+            for (int j = 0; j < matrixList.get(i).getSRows(); j++) {
+                if ((nCol + j) == col) matrixList.get(i).set(row,j,value);
+            }
+            nCol=+matrixList.get(i).getSRows();
+        }
     }
 
     @Override
@@ -49,13 +63,7 @@ public class HorizontalGroup implements IMatrix {
 
     @Override
     public void Draw() {
-        for (int i = 0; i < getSRows(); i++) {
-            for (IMatrix aMatrixList : matrixList) {
-                for (int k = 0; k < aMatrixList.getSRows(); k++) {
-                    aMatrixList.Draw();
-                }
-            }
-        }
+
     }
 
     @Override
@@ -66,5 +74,10 @@ public class HorizontalGroup implements IMatrix {
     @Override
     public void DrawItem(int Row, int Col, String value, JPanel panel1) {
 
+    }
+
+    @Override
+    public IIterator createIterator() {
+        return null;
     }
 }

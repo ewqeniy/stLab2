@@ -15,7 +15,7 @@ public class RenumDecorator implements IMatrix {
     private int swapedRow1=0;
     private int swapedRow2=0;
 
-    public RenumDecorator(IMatrix matrix) {
+    RenumDecorator(IMatrix matrix) {
         this.matrix = matrix;
         SwapCol(matrix);
         SwapRow(matrix);
@@ -75,13 +75,54 @@ public class RenumDecorator implements IMatrix {
     @Override
     public void Draw() {
         DrawBorder(matrix.getSRows(),matrix.getSRows(),App.app.getPanel1(),App.app.isFlag());
-        for (int i = 0; i < getSRows(); i++) {
+        IIterator iterator = createIterator();
+
+        for (int i = 0; !iterator.isDone(); i++){
+            for (int j =0; j<matrix.getSRows(); j++){
+                if (i == swapedRow1){
+                    DrawItem(swapedRow2,j,iterator.getCurrent(),App.app.getPanel1());
+                    iterator.MoveNext();
+                    continue;
+                }
+                if (i == swapedRow2){
+                    DrawItem(swapedRow1,j,iterator.getCurrent(),App.app.getPanel1());
+                    iterator.MoveNext();
+                    continue;
+                }
+                if (j == swapedCol1){
+                    DrawItem(i,swapedCol2,iterator.getCurrent(),App.app.getPanel1());
+                    iterator.MoveNext();
+                    continue;
+                }
+                if (j == swapedCol2){
+                    DrawItem(i,swapedCol1,iterator.getCurrent(),App.app.getPanel1());
+                    iterator.MoveNext();
+                    continue;
+                }
+                DrawItem(i,j,iterator.getCurrent(),App.app.getPanel1());
+                iterator.MoveNext();
+            }
+            System.out.println("");
+        }
+
+
+        /*while (!iterator.isDone()){
+            for (int i = 0; i < matrix.getSRows(); i++) {
+                for (int j = 0; j < matrix.getSCols(); j++) {
+                    s++;
+                    DrawItem(i,j,iterator.getCurrent(),App.app.getPanel1());
+                    iterator.MoveNext();
+                }
+                System.out.println("");
+            }
+        }*/
+        /*for (int i = 0; i < getSRows(); i++) {
             for (int j = 0; j < getSCols(); j++) {
                 DrawItem(i,j, String.valueOf(get(i,j)), App.app.getPanel1());
             }
             System.out.println("");
         }
-        System.out.println("");
+        System.out.println("");*/
     }
 
     @Override
@@ -92,5 +133,10 @@ public class RenumDecorator implements IMatrix {
     @Override
     public void DrawItem(int Row, int Col, String value, JPanel panel1) {
         matrix.DrawItem(Row,Col,value,panel1);
+    }
+
+    @Override
+    public IIterator createIterator() {
+        return matrix.createIterator();
     }
 }

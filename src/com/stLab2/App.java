@@ -47,8 +47,8 @@ public class App extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 repaint();
-                IDrawer id = new CDrawer();
-                IMatrix m = new MatrixN(5,5,id);
+                IDrawer id = new WDrawer();
+                IMatrix m = new MatrixS(5,5,id);
                 initMatrix.fill(m,14,25);
                 matrix = m;
                 m.Draw();
@@ -59,7 +59,7 @@ public class App extends JFrame{
         Decor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                matrix = new RenumDecorator(new RenumDecorator(matrix));
+                matrix = new RenumDecorator(matrix);
                 matrix.Draw();
                 Undecor.setEnabled(true);
             }

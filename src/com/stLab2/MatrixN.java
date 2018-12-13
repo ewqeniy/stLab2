@@ -3,6 +3,8 @@ package com.stLab2;
 import javax.swing.*;
 
 public class MatrixN extends AMatrix {
+    boolean it = false;
+    IIterator s;
     MatrixN(int cows, int rows, IDrawer d) {
         super(cows, rows, d);
     }
@@ -32,5 +34,10 @@ public class MatrixN extends AMatrix {
     @Override
     public void DrawItem(int Row, int Col, String value, JPanel panel1) {
         drawer.DrawItem(Row, Col,value,panel1);
+    }
+
+    @Override
+    public IIterator createIterator() {
+        return new IteratorN(this);
     }
 }
