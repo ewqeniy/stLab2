@@ -4,11 +4,11 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class HorizontalGroup implements IMatrix {
+public class VerticalGroup implements IMatrix{
     private ArrayList<IMatrix> matrixList = new ArrayList<>();
     //private IMatrix matrix;
 
-    public HorizontalGroup(IMatrix ... matrix) {
+    public VerticalGroup(IMatrix ... matrix) {
         this.matrixList.addAll(Arrays.asList(matrix));
     }
 
@@ -16,20 +16,20 @@ public class HorizontalGroup implements IMatrix {
         matrixList.add(matrix);
     }
     @Override
-    public int getSRows() {
+    public int getSCols() {
         int sum=0;
         for (int i = 0; i < matrixList.size(); i++) {
-            sum+=matrixList.get(i).getSCols();
+            sum+=matrixList.get(i).getSRows();
         }
         //System.out.println("getSRows()-> " + sum);
         return sum;
     }
 
     @Override
-    public int getSCols() {
+    public int getSRows() {
         int max=-1;
         for (int i = 0; i < matrixList.size(); i++) {
-            if (matrixList.get(i).getSRows() > max) max = matrixList.get(i).getSRows();
+            if (matrixList.get(i).getSCols() > max) max = matrixList.get(i).getSCols();
         }
         //System.out.println("getSCols()-> " + max);
         return max;
@@ -37,29 +37,29 @@ public class HorizontalGroup implements IMatrix {
 
     @Override
     public int get(int row, int col) {
-        int nCol = 0;
+        int nRow = 0;
         for (int i = 0; i < matrixList.size(); i++) {
-            for (int j = 0; j < matrixList.get(i).getSCols(); j++) {
-                if ((nCol + j) == col) {
-                    if (row > matrixList.get(i).getSRows()-1) {
+            for (int j = 0; j < matrixList.get(i).getSRows(); j++) {
+                if ((nRow + j) == row) {
+                    if (col > matrixList.get(i).getSCols()-1) {
                         return 0;
                     }
-                    return matrixList.get(i).get(row,j);
+                    return matrixList.get(i).get(j,col);
                 }
             }
-            nCol+=matrixList.get(i).getSCols();
+            nRow+=matrixList.get(i).getSRows();
         }
         return 0;
     }
 
     @Override
     public void set(int row, int col, int value) {
-        int nCol = 0;
+        int nRow = 0;
         for (int i = 0; i < matrixList.size(); i++) {
-            for (int j = 0; j < matrixList.get(i).getSCols(); j++) {
-                if ((nCol + j) == col) matrixList.get(i).set(row,j,value);
+            for (int j = 0; j < matrixList.get(i).getSRows(); j++) {
+                if ((nRow + j) == row) matrixList.get(i).set(j,col,value);
             }
-            nCol=+matrixList.get(i).getSCols();
+            nRow=+matrixList.get(i).getSRows();
         }
     }
 
