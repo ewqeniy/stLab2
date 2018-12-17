@@ -1,11 +1,13 @@
 package com.stLab2;
 
+import javax.swing.*;
+
 public class IteratorN implements IIterator {
     private int currentRow = 0;
     private int currentCol = 0;
     private IMatrix matrix;
 
-    public IteratorN(IMatrix matrix) {
+    IteratorN(IMatrix matrix) {
         this.matrix = matrix;
     }
 
@@ -17,7 +19,7 @@ public class IteratorN implements IIterator {
 
     @Override
     public void MoveNext() {
-        if (currentCol == matrix.getSRows()-1){
+        if (currentCol == matrix.getSCols()-1){
             currentCol=0;
             currentRow++;
         }
@@ -31,7 +33,6 @@ public class IteratorN implements IIterator {
 
     @Override
     public boolean isDone() {
-        if (currentRow == matrix.getSCols()) return true;
-        else return false;
+        return currentRow == matrix.getSRows();
     }
 }

@@ -17,7 +17,7 @@ public class IteratorS implements IIterator {
 
     @Override
     public void MoveNext() {
-        if (currentCol == matrix.getSRows()-1){
+        if (currentCol == matrix.getSCols()-1){
             currentCol=0;
             currentRow++;
         }
@@ -32,7 +32,7 @@ public class IteratorS implements IIterator {
 
     @Override
     public boolean isDone() {
-        if (currentRow == matrix.getSCols()) return true;
+        if (currentRow == matrix.getSRows()) return true;
         else return false;
     }
 }

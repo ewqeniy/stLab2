@@ -132,7 +132,19 @@ public class RenumDecorator implements IMatrix {
 
     @Override
     public void DrawItem(int Row, int Col, String value, JPanel panel1) {
-        matrix.DrawItem(Row,Col,value,panel1);
+        /*if (Row == swapedRow1){
+            matrix.DrawItem(swapedRow2,Col,value,panel1);
+        }
+        if (Row == swapedRow2){
+            matrix.DrawItem(swapedRow1,Col,value,panel1);
+        }
+        if (Col == swapedCol1){
+            matrix.DrawItem(Row,swapedCol2,value,panel1);
+        }
+        if (Col == swapedCol2){
+            matrix.DrawItem(Row,swapedCol1,value,panel1);
+        }*/
+        matrix.DrawItem(Row, Col, value, panel1);
     }
 
     @Override

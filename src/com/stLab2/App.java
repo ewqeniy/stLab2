@@ -47,8 +47,8 @@ public class App extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 repaint();
-                IDrawer id = new WDrawer();
-                IMatrix m = new MatrixS(5,5,id);
+                IDrawer id = new CDrawer();
+                IMatrix m = new MatrixN(5,5,id);
                 initMatrix.fill(m,14,25);
                 matrix = m;
                 m.Draw();
@@ -84,10 +84,10 @@ public class App extends JFrame{
         frame.pack();
         frame.setVisible(true);
         IDrawer d = new CDrawer();
-        IMatrix matr1 = new MatrixN(3,3,d);
-        IMatrix matr2 = new MatrixN(4,3,d);
-        IMatrix matr3 = new MatrixN(3,4,d);
-        IMatrix matr4 = new MatrixN(2,3,d);
+        IMatrix matr1 = new MatrixS(3,3,d);
+        IMatrix matr2 = new MatrixN(2,4,d);
+        IMatrix matr3 = new MatrixS(4,4,d);
+        IMatrix matr4 = new MatrixN(2,2,d);
 
         initMatrix.fill(matr1,5,12);
         initMatrix.fill(matr2,6,12);

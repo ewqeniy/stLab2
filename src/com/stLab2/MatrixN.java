@@ -17,13 +17,25 @@ public class MatrixN extends AMatrix {
     @Override
     public void Draw() {
         DrawBorder(getSRows(), getSCols(), App.app.getPanel1(), App.app.isFlag());
-        for (int i = 0; i < getSRows(); i++) {
+        IIterator iterator = createIterator();
+
+        for (int i = 0; !iterator.isDone(); i++){
+            for (int j =0; j<getSRows(); j++){
+                DrawItem(i,j,iterator.getCurrent(),App.app.getPanel1());
+                iterator.MoveNext();
+            }
+            System.out.println("");
+        }
+        System.out.println("");
+
+
+        /*for (int i = 0; i < getSRows(); i++) {
             for (int j = 0; j < getSCols(); j++) {
                 DrawItem(i,j, String.valueOf(this.get(i,j)), App.app.getPanel1());
             }
             System.out.println("");
         }
-        System.out.println("");
+        System.out.println("");*/
     }
 
     @Override
