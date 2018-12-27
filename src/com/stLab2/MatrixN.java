@@ -3,8 +3,8 @@ package com.stLab2;
 import javax.swing.*;
 
 public class MatrixN extends AMatrix {
-    boolean it = false;
-    IIterator s;
+    private boolean it = false;
+    private IIterator iterator = createIterator("default");
     MatrixN(int cows, int rows, IDrawer d) {
         super(cows, rows, d);
     }
@@ -17,7 +17,7 @@ public class MatrixN extends AMatrix {
     @Override
     public void Draw() {
         DrawBorder(getSRows(), getSCols(), App.app.getPanel1(), App.app.isFlag());
-        IIterator iterator = createIterator();
+        iterator.reset();
 
         for (int i = 0; !iterator.isDone(); i++){
             for (int j =0; j<getSRows(); j++){
@@ -49,7 +49,40 @@ public class MatrixN extends AMatrix {
     }
 
     @Override
-    public IIterator createIterator() {
-        return new IteratorN(this);
+    public IIterator createIterator(String flag) {
+        if (flag.equals("default")) return new IteratorN();
+        if (flag.equals("decorator")) return new IteratorDecor(iterator,this);
+        return null;
+    }
+
+    public class IteratorN implements IIterator {
+        protected int currentRow = 0;
+        protected int currentCol = 0;
+
+
+        @Override
+        public void reset() {
+            currentRow=0;
+            currentCol=0;
+        }
+
+        @Override
+        public void MoveNext() {
+            if (currentCol == getSCols()-1){
+                currentCol=0;
+                currentRow++;
+            }
+            else currentCol++;
+        }
+
+        @Override
+        public String getCurrent() {
+            return String.valueOf(get(currentRow,currentCol));
+        }
+
+        @Override
+        public boolean isDone() {
+            return currentRow == getSRows();
+        }
     }
 }

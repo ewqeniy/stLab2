@@ -18,12 +18,21 @@ public class IteratorDecor implements IIterator {
     @Override
     public void MoveNext() {
 
-        if (currentRow % 2 != 1) iterator.MoveNext();
-        else {
+        if((currentRow+1)%2!=1){
             if (currentCol == matrix.getSRows() - 1) {
                 currentCol = 0;
                 currentRow++;
-            } else currentCol++;
+                iterator.MoveNext();
+            } else {
+                iterator.MoveNext();
+                currentCol++;
+            }
+        }
+        else {
+            for (int i = 0; i < matrix.getSRows(); i++) {
+                iterator.MoveNext();
+            }
+            currentRow++;
         }
     }
 

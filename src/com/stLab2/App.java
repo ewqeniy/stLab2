@@ -97,8 +97,11 @@ public class App extends JFrame{
         matr2.Draw();
         matr3.Draw();
         matr4.Draw();
+        matr4.createIterator("decorator");
         VerticalGroup group = new VerticalGroup(matr1,matr2,matr3,matr4);
         group.Draw();
+
+
     }
 }
 

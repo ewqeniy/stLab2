@@ -14,6 +14,7 @@ public class RenumDecorator implements IMatrix {
     private int swapedCol2=0;
     private int swapedRow1=0;
     private int swapedRow2=0;
+    private IIterator iterator = createIterator("default");
 
     RenumDecorator(IMatrix matrix) {
         this.matrix = matrix;
@@ -75,7 +76,7 @@ public class RenumDecorator implements IMatrix {
     @Override
     public void Draw() {
         DrawBorder(matrix.getSRows(),matrix.getSRows(),App.app.getPanel1(),App.app.isFlag());
-        IIterator iterator = createIterator();
+        iterator.reset();
 
         for (int i = 0; !iterator.isDone(); i++){
             for (int j =0; j<matrix.getSRows(); j++){
@@ -148,7 +149,7 @@ public class RenumDecorator implements IMatrix {
     }
 
     @Override
-    public IIterator createIterator() {
-        return matrix.createIterator();
+    public IIterator createIterator(String flag) {
+        return matrix.createIterator(flag);
     }
 }

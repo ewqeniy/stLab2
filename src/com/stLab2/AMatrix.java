@@ -1,7 +1,7 @@
 package com.stLab2;
 public abstract class AMatrix implements IMatrix  {
     private IVector[] data;
-    IDrawer drawer;
+    protected IDrawer drawer;
 
     AMatrix(int rows, int cows, IDrawer d) {
         data = new IVector[rows];
